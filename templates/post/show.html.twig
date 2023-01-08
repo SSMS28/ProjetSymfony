@@ -1,0 +1,45 @@
+
+{% block title %}Détails bien{% endblock %}
+{% block body %}
+<style>
+    .post{
+        border-radius: 10px;
+        box-shadow: 0 10px 16px rgba(0,0,0,.25);
+        margin-bottom: 40px;
+        padding: 40px;
+        margin-top: 40px;
+    }
+    img{
+        border-radius: 10px;
+    }
+</style>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center">
+        {{ message }}
+    </div>
+{% endfor %}
+<section class="post">
+  <div class="card mb-3">
+  <h4 class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{post.intitule}}</font></font></h4>
+  <div class="card-body">
+    <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Localisation: {{post.localisation}}</font></font></h5>
+    <h6 class="card-subtitle text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Type : {{post.descriptif}}</font></font></h6>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descritpion : {{post.descriptif}}</font></font></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">surface: {{post.surface}} Ha</font></font></li>
+    <li class="list-group-item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prix: {{post.prix}} €</font></font></li>
+  </ul>
+  <div class="card-footer text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+    <div class="card-body">
+    <a href="{{ path('favoris_add' , {'id' : post.id})}}" class="card-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ajout favoris</font></font></a>
+  </div>
+  </font></font></div>
+  </div>    
+  </article>
+</section>
+
+<hr>
+{% endblock%}

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}    
+    <style>
+        .posts{
+            border-radius: 5px;
+            box-shadow: 0 5px 16px rgba(0,0,0,.25);
+            margin-bottom: 40px;
+            padding: 0px;
+            margin-top: 40px;
+        }
+        img{
+            border-radius: 10px;
+        }
+        h4{
+            margin-top: 15px;
+           
+        }
+    </style>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <h4>Nos Catégories</h4>
+
+<div class="list-group">
+  <a href="{{path('categorie_terrain')}}" class="list-group-item list-group-item-action"><li class="list-group-item d-flex justify-content-between align-items-center">
+    Terrain agricole
+    <span class="badge bg-primary rounded-pill">-></span>
+  </li></a>
+  <a href="{{path('categorie_prairie')}}" class="list-group-item list-group-item-action"><li class="list-group-item d-flex justify-content-between align-items-center">
+    Prairie
+    <span class="badge bg-primary rounded-pill">-></span>
+  </li></a>
+  <a href="{{path('categorie_bois')}}" class="list-group-item list-group-item-action "><li class="list-group-item d-flex justify-content-between align-items-center">
+    Bois
+    <span class="badge bg-primary rounded-pill">-></span>
+  </li></a>
+  <a href="{{path('categorie_batiment')}}" class="list-group-item list-group-item-action "><li class="list-group-item d-flex justify-content-between align-items-center">
+    Bâtiments
+    <span class="badge bg-primary rounded-pill">-></span>
+  </li></a>
+  <a href="{{path('categorie_exploitation')}}" class="list-group-item list-group-item-action "><li class="list-group-item d-flex justify-content-between align-items-center">
+    Exploitations
+    <span class="badge bg-primary rounded-pill">-></span>
+  </li></a>
+</div>
+
+  <h4>Tous les biens</h4>
+    {% for post in posts%}
+        <section class="posts">
+  <article>
+  <div class="card mb-3">
+  <h4 class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{post.intitule}}</font></font></h4>
+  <div class="card-body">
+    <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Localisation: {{post.localisation}}</font></font></h5>
+    <h6 class="card-subtitle text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Type : {{post.type}}</font></font></h6>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descritpion : {{post.descriptif}}</font></font></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">surface: {{post.surface}} Ha</font></font></li>
+    <li class="list-group-item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prix: {{post.prix}} €</font></font></li>
+  </ul>
+  <div class="card-footer text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+    <div class="card-body">
+    <a href="{{ path('favoris_add' , {'id' : post.id})}}" class="card-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ajout favoris</font></font></a>
+    <a href="{{ path('post_show' , {'id' : post.id})}}" class="card-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Plus d'infos</font></font></a>
+  </div>
+  </font></font></div>
+  </div>    
+  </article>
+    </section>
+
+    {% endfor%}
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
+{% endblock %}
+

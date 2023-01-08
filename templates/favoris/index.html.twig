@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FavorisController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .form-group{margin-bottom:20px}
+    .btn-sm{margin-top:5px; margin-left:300px;}
+</style>
+
+<div class="example-wrapper">
+
+    {% if items | length > 0 %}
+    <h3>Vos favoris </font></font><span class="badge bg-primary rounded-pill"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">  {{ nb_biens_favoris }} </font></font></span></h3>
+    <div class="form-group">
+      <label for="exampleInputEmail1" class="form-label mt-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Se partager par mail</font></font></label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez l'e-mail">
+      <small id="emailHelp" class="form-text text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">La liste des biens ci-dessous vous sera transférer par mail.</font></font></small>
+      <button type="button" class="btn btn-primary btn-sm"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Envoyer</font></font></button>
+    </div>
+    
+    
+    {% for item in items %} 
+    <div class="card mb-3">
+    <h4 class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{item.post.intitule}}</font></font></h4>
+    <div class="card-body">
+        <h5 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Localisation: {{item.post.localisation}}</font></font></h5>
+        <h6 class="card-subtitle text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Type : {{item.post.descriptif}}</font></font></h6>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descritpion : {{item.post.descriptif}}</font></font></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">surface: {{item.post.surface}} Ha</font></font></li>
+        <li class="list-group-item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prix: {{item.post.prix}} €</font></font></li>
+    </ul>
+    <div class="card-footer text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+        <a href="{{ path('favoris_remove', {'id': item.post.id})}}" class="btn btn-danger btn-sm">Rétiré des favoris<i class="fas fa-trash"></i></a>
+    </div>
+    </div>
+    {% endfor %}   
+    {% else %}
+        <h3>Votre liste de biens favoris est vide !!!</h3>
+    {% endif %}
+</div>
+{% endblock %}

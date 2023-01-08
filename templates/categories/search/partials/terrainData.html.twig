@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}    
+    <style>
+        .posts{
+            border-radius: 10px;
+            box-shadow: 0 10px 16px rgba(0,0,0,.25);
+            margin-bottom: 40px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+        img{
+            border-radius: 10px;
+        }
+        h4{
+            margin-top: 15px;
+           
+        }
+        .btn-primary
+        {
+            margin-top: 10px;
+        }
+    </style>
+    <h4>Nos térrains agricoles</h4>
+    <h4>Résultats</h4>
+    {% for post in posts%}
+        <section class="posts">
+            <article>
+            <h2>{{post.intitule}}</h2>
+                <div class="metadat">
+                {{post.localisation}}
+                <span class="badge bg-success">{{post.prix}} € </span>
+                {{post.surface}}
+                
+                </div>
+                <div class="content">
+                <p>{{post.descriptif}}</p>
+                <a href="{{ path('post_show' , {'id' : post.id})}}">Read more</a>
+                </div>
+                <hr>     
+            </article>
+        </section>
+    {% endfor%}
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2>Incription sur le site</h2>
+    <div class="card border-info mb-3" style="max-width: 25rem;">
+        <div class="card-header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Veuillez remplir tous les champs svp</font></font></div>
+        <div class="card-body">
+            {{form_start(form)}}
+            {# Afficher tous les champs de notre formulaire avec option#}
+            {{form_row(form.email, {'attr': {'placeholder':'ex: steph@gmail.com'}})}}
+            {{form_row(form.password, {'attr': {'placeholder':'ex: 12345678'}})}}
+            {{form_row(form.confirm_password, {'attr': {'placeholder':'répétez votre mot de passe'}})}}
+            <button type="submit" class="btn btn-success">S'enregistrer</button>
+            {{form_end(form)}}
+        </div>
+      </div>
+{% endblock %}

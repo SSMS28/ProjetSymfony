@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.css">
+        {% endblock %}
+        {% block javascripts %}
+            {# {{ encore_entry_script_tags('app') }} #}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Safer Immobilier</font></font></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Basculer la navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        {% if not app.user %} {# Si l'utilisateur n'est pas connecté#} 
+          <li class="nav-item">
+          <a class="nav-link active" href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Accueil
+            </font></font><span class="visually-hidden"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(actuel)</font></font></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_favoris')}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mes favoris</font></font></a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nous contacter</font></font></a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">À propos</font></font></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/inscription"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S'inscrire</font></font></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/connexion"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Se connecter</font></font></a>
+        </li>
+        {% else %}
+          <li class="nav-item">
+          <a class="nav-link active" href="/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Accueil
+            </font></font><span class="visually-hidden"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(actuel)</font></font></span>
+          </a>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nous contacter</font></font></a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link" href="/deconnexion"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Se déconnecter</font></font></a>
+        </li>
+        {% endif %}
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Chercher">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chercher</font></font></button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container">
+        {% block body %}
+	
+        {% endblock %}
+    </body>
+</html>

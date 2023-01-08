@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}    
+    <style>
+        .posts{
+            border-radius: 10px;
+            box-shadow: 0 10px 16px rgba(0,0,0,.25);
+            margin-bottom: 40px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+        img{
+            border-radius: 10px;
+        }
+        h4{
+            margin-top: 15px;
+           
+        }
+        .btn-primary
+        {
+            margin-top: 15px;
+        }
+    </style>
+    <h4>Nos pairies</h4>
+    
+    <div class="form-group">
+        <label class="col-form-label col-form-label-sm mt-1" for="inputSmall"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Localisation</font></font></label>
+        <input class="form-control form-control-sm" type="text" placeholder="ex: mots clés" id="inputSmall"> 
+    </div> 
+    {# {{form_start(search)}} {{form_row(search.localisation)}} #}
+    <div class="form-group">
+        <label class="col-form-label col-form-label-sm mt-1" for="inputSmall"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prix</font></font></label>
+        {# {{form_row(search.minprice)}} #}
+        <input class="form-control form-control-sm" type="number" placeholder="ex: 300" id="inputSmall">  
+    </div>
+    <div class="form-group">
+        <label class="col-form-label col-form-label-sm mt-1" for="inputSmall"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Intitulé ou Descriptif</font></font></label>
+        {# {{form_row(search.minprice)}} {{form_end(search)}} #}
+        <input class="form-control form-control-sm" type="text" placeholder="ex: mots clés" id="inputSmall"> 
+    </div>
+    <button type="button" class="btn btn-primary">Recherche</font></font></button>
+    
+    <h4>Résultats</h4>
+    {% for post in posts%}
+        <section class="posts">
+            <article>
+            <h2>{{post.intitule}}</h2>
+                <div class="metadat">
+                {{post.localisation}}
+                <span class="badge bg-success">{{post.prix}} € </span>
+                {{post.surface}}
+                
+                </div>
+                <div class="content">
+                <p>{{post.descriptif}}</p>
+                <a href="{{ path('post_show' , {'id' : post.id})}}">Read more</a>
+                </div>
+                <hr>     
+            </article>
+        </section>
+    {% endfor%}
+
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
+{% endblock %}

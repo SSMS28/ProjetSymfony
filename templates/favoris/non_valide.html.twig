@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}no validation{% endblock %}
+
+{% block body %}
+<style>
+    .alert-danger{
+        margin-top:20px;
+    }
+</style>
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Oups! </font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vous avez déja ajouté ce bien à votre liste de favoris </font></font><a href="{{ path('app_favoris') }}" class="alert-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">consulter ma liste</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> .
+</font></font></div>
+{% endblock %}
